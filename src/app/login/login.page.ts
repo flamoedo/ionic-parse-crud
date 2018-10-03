@@ -5,7 +5,7 @@ import {AuthenticationService} from '../authentication.service';
 import { AlertController } from '@ionic/angular';
 
 
-var Parse = require('parse');
+const Parse = require('parse');
 
 @Component({
   selector: 'app-login',
@@ -14,7 +14,7 @@ var Parse = require('parse');
 })
 export class LoginPage implements OnInit {
 
-  loginForm: FormGroup;  
+  loginForm: FormGroup;
 
   user;
 
@@ -31,7 +31,7 @@ export class LoginPage implements OnInit {
   ngOnInit() {
   }
 
-  async login(){
+  async login() {
 
       try {
         this.user = await Parse.User.logIn(this.loginForm.value.username, this.loginForm.value.password);
@@ -40,7 +40,7 @@ export class LoginPage implements OnInit {
 
       } catch (error) {
         // Show the error message somewhere and let the user try again.
-        this.presentAlert("Error: ", error.code, error.message);
+        this.presentAlert('Error: ', error.code, error.message);
       }
 
   }

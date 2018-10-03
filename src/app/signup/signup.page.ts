@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AlertController } from '@ionic/angular';
 
-var Parse = require('parse');
+const Parse = require('parse');
 
 @Component({
   selector: 'app-signup',
@@ -30,21 +30,21 @@ export class SignupPage implements OnInit {
 
   async signup() {
 
-    //Create a new user on Parse
-    var user = new Parse.User();
-    user.set("username", this.signupForm.value.username);
-    user.set("password", this.signupForm.value.password);
-    user.set("email", this.signupForm.value.email);
+    // Create a new user on Parse
+    const user = new Parse.User();
+    user.set('username', this.signupForm.value.username);
+    user.set('password', this.signupForm.value.password);
+    user.set('email', this.signupForm.value.email);
 
     // other fields can be set just like with Parse.Object
     try {
       await user.signUp();
       // Hooray! Let them use the app now.
-      this.presentAlert("success!", "User created", "User created with success, now you can login");
+      this.presentAlert('success!', 'User created', 'User created with success, now you can login');
       this.router.navigate(['/login']);
     } catch (error) {
       // Show the error message somewhere and let the user try again.
-      this.presentAlert("Error:", error.code, error.message);
+      this.presentAlert('Error:', error.code, error.message);
     }
 
   };

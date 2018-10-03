@@ -2,7 +2,7 @@ import { Component} from '@angular/core';
 import { AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
 
-var Parse = require('parse');
+const Parse = require('parse');
 
 @Component({
   selector: 'app-home',
@@ -11,20 +11,20 @@ var Parse = require('parse');
 })
 
 export class HomePage {
-  GameScore
-  query
-  results
-  scores = []
+  GameScore;
+  query;
+  results;
+  scores = [];
 
   constructor(public router: Router, public alertController: AlertController) {
 
-    this.GameScore = Parse.Object.extend("GameScore");
+    this.GameScore = Parse.Object.extend('GameScore');
     this.query = new Parse.Query(this.GameScore);
     this.query.limit(100);
     this.initial_query();
     // this.list.closeSlidingItems();
 
-  } 
+  }
 
   refresh(event) {
     setTimeout(() => {
@@ -37,9 +37,9 @@ export class HomePage {
 
     await this.query.find().then(
       results => {
-        this.scores = []
+        this.scores = [];
         for (let i = 0; i < results.length; i++) {
-          let object = results[i];
+          const object = results[i];
           this.scores.push(object);
         }
       }
@@ -63,10 +63,9 @@ export class HomePage {
           handler: () => {
             this.query.get(score.id)
               .then((myObject) => {
-                myObject.destroy();    
-                let i = this.scores.indexOf(score);
-                
-                this.scores.splice(i,1);
+                myObject.destroy();
+                const i = this.scores.indexOf(score);
+                this.scores.splice(i, 1);
 
 
               }, (error) => {
@@ -82,7 +81,7 @@ export class HomePage {
   }
 
   edit(key, list) {
-    console.log(list)
+    console.log(list);
     list.closeOpened();
     this.router.navigate(['/edit/' + key]);
   }

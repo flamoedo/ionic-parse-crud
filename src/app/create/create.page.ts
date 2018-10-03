@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-var Parse = require('parse');
+const Parse = require('parse');
 
 
 @Component({
@@ -27,16 +27,16 @@ export class CreatePage implements OnInit {
 
   saveInfo() {
 
-    const GameScore = Parse.Object.extend("GameScore");
+    const GameScore = Parse.Object.extend('GameScore');
     const gameScore = new GameScore();
 
-    gameScore.set("score", this.infoForm.value.player_score);
-    gameScore.set("playerName", this.infoForm.value.player_name);
+    gameScore.set('score', this.infoForm.value.player_score);
+    gameScore.set('playerName', this.infoForm.value.player_name);
 
     gameScore.save()
-      .then((gameScore) => {
+      .then(() => {
         // Execute any logic that should take place after the object is saved.
-        this.router.navigate(['/detail/'+ gameScore.id]);
+        this.router.navigate(['/detail/' + gameScore.id]);
 
       }, (error) => {
         // Execute any logic that should take place if the save fails.

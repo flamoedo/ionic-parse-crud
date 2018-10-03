@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-var Parse = require('parse');
+const Parse = require('parse');
 
 @Component({
   selector: 'app-edit',
@@ -12,9 +12,9 @@ export class EditPage implements OnInit {
 
   editForm: FormGroup;
 
-  score
-  playerName
-  id
+  score;
+  playerName;
+  id;
 
   constructor(public router: Router, private route: ActivatedRoute,
     private formBuilder: FormBuilder) {
@@ -30,13 +30,13 @@ export class EditPage implements OnInit {
   }
 
   initial_query(key) {
-    var GameScore = Parse.Object.extend("GameScore");
-    var query = new Parse.Query(GameScore);
+    const GameScore = Parse.Object.extend('GameScore');
+    const query = new Parse.Query(GameScore);
     query.get(key)
       .then((gameScore) => {
         // The object was retrieved successfully.
-        this.editForm.controls['player_name'].setValue(gameScore.get("playerName"));
-        this.editForm.controls['player_score'].setValue(gameScore.get("score"));
+        this.editForm.controls['player_name'].setValue(gameScore.get('playerName'));
+        this.editForm.controls['player_score'].setValue(gameScore.get('score'));
         this.id = gameScore.id;
       }, (error) => {
         // The object was not retrieved successfully.
@@ -48,14 +48,14 @@ export class EditPage implements OnInit {
 
   updateScore() {
 
-    var GameScore = Parse.Object.extend("GameScore");
-    var query = new Parse.Query(GameScore);
+    const GameScore = Parse.Object.extend('GameScore');
+    const query = new Parse.Query(GameScore);
     query.get(this.id)
       .then((gameScore) => {
         // The object was retrieved successfully.
-        gameScore.set("score", this.editForm.value.player_score);
-        gameScore.set("playerName", this.editForm.value.player_name);
-        gameScore.save()
+        gameScore.set('score', this.editForm.value.player_score);
+        gameScore.set('playerName', this.editForm.value.player_name);
+        gameScore.save();
         this.router.navigate(['']);
 
 

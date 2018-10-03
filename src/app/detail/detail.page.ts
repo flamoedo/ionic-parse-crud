@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-var Parse = require('parse');
+const Parse = require('parse');
 
 
 @Component({
@@ -9,9 +9,9 @@ var Parse = require('parse');
   styleUrls: ['./detail.page.scss'],
 })
 export class DetailPage implements OnInit {
-  id
-  score
-  playerName
+  id;
+  score;
+  playerName;
 
   constructor(private route: ActivatedRoute,
     public router: Router) {
@@ -20,13 +20,13 @@ export class DetailPage implements OnInit {
 
 
   initial_query(key) {
-    var GameScore = Parse.Object.extend("GameScore");
-    var query = new Parse.Query(GameScore);
+    const GameScore = Parse.Object.extend('GameScore');
+    const query = new Parse.Query(GameScore);
     query.get(key)
       .then((gameScore) => {
         // The object was retrieved successfully.
-        this.score = gameScore.get("score");
-        this.playerName = gameScore.get("playerName");
+        this.score = gameScore.get('score');
+        this.playerName = gameScore.get('playerName');
         this.id = gameScore.id;
       }, (error) => {
         // The object was not retrieved successfully.
